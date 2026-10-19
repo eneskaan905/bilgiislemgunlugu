@@ -36,6 +36,8 @@ Cloudflare Pages projesi: `bilgiislemgunlugu`. GitHub deposunun `main` dalına b
 
 Yönetim paneli: https://bilgiislemgunlugu.pages.dev/admin/ (özel alan adı aktif olduğunda https://bilgiislemgunlugu.com/admin/). GitHub erişim belirtecini yalnızca CMS giriş ekranına girin. Belirteci bu dosyaya, depoya veya sohbet mesajına eklemeyin. Ayrı bir OAuth uygulaması kurulmadı; mevcut giriş yöntemi Sveltia'nın desteklediği GitHub belirteci girişidir.
 
+Panel yalnızca `auth_methods: [token]` ile giriş sunar; yapılandırılmamış Netlify OAuth bağlantısı gösterilmez. GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens bölümünde yalnızca `bilgiislemgunlugu` deposu için Contents: Read and write izni verin. Metadata: Read otomatik eklenir. Panelde Token ile giriş seçeneğini kullanın. `.env` içindeki Cloudflare tokenı bu giriş için kullanılamaz.
+
 ## Özellikler
 
 Ana sayfada en fazla 3 son yazı gösterilir. `/yazilar/` arşivi ve `/yazilar/kategori/<kategori>/` arşivleri sayfa başına 9 yazı içerir; ek sayfalar build sırasında otomatik üretilir. Header/footer logosu `src/components/Logo.astro` içinde, aynı kimliğe ait favicon `public/favicon.svg` içindedir. Yönetim paneline genel menüden bağlantı verilmez; `/admin/` adresinden erişilir.

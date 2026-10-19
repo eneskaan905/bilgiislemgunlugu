@@ -3,6 +3,7 @@ backend:
   name: github
   repo: eneskaan905/bilgiislemgunlugu
   branch: main
+  auth_methods: [token]
 site_url: https://bilgiislemgunlugu.com
 display_url: https://bilgiislemgunlugu.com
 locale: tr
