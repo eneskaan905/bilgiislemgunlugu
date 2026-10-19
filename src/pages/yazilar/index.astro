@@ -1,0 +1,6 @@
+---
+import {getCollection} from 'astro:content';
+import Archive from '../../components/Archive.astro';
+const posts=(await getCollection('posts',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+---
+<Archive posts={posts.slice(0,9)} total={posts.length} totalPages={Math.max(1,Math.ceil(posts.length/9))}/>

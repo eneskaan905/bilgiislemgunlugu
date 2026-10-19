@@ -1,0 +1,37 @@
+# Yazılar bu GitHub deposuna kaydedilir.
+backend:
+  name: github
+  repo: eneskaan905/bilgiislemgunlugu
+  branch: main
+site_url: https://bilgiislemgunlugu.com
+display_url: https://bilgiislemgunlugu.com
+locale: tr
+media_folder: public/uploads
+public_folder: /uploads
+collections:
+  - name: posts
+    label: Yazılar
+    label_singular: Yazı
+    folder: src/content/posts
+    create: true
+    slug: '{{slug}}'
+    preview_path: yazilar/{{slug}}/
+    summary: '{{title}} — {{category}}'
+    fields:
+      - {label: Başlık, name: title, widget: string}
+      - {label: Açıklama, name: description, widget: text}
+      - {label: Yayın tarihi, name: date, widget: datetime, type: date}
+      - label: Kategori
+        name: category
+        widget: select
+        options: [Sistem Yönetimi, Linux, 'Ağ & Güvenlik', DevOps, Otomasyon, Bulut]
+      - {label: Etiketler, name: tags, widget: list}
+      - {label: Okuma süresi (dakika), name: minutes, widget: number, value_type: int, min: 1, default: 5}
+      - {label: Öne çıkan, name: featured, widget: boolean, default: false}
+      - {label: Taslak, name: draft, widget: boolean, default: true}
+      - label: Kapak illüstrasyonu
+        name: art
+        widget: select
+        options: [terminal, network, docker, code, cloud, backup]
+        default: terminal
+      - {label: İçerik, name: body, widget: markdown}

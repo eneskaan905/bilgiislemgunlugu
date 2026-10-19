@@ -1,0 +1,7 @@
+---
+import {getCollection} from 'astro:content';
+import Archive from '../../../../../components/Archive.astro';
+import {categories} from '../../../../../data/categories';
+export async function getStaticPaths(){const posts=(await getCollection('posts',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());return categories.flatMap(category=>{const filtered=posts.filter(p=>p.data.category===category.name);const totalPages=Math.ceil(filtered.length/9);return Array.from({length:Math.max(0,totalPages-1)},(_,i)=>({params:{category:category.slug,page:String(i+2)},props:{category,posts:filtered.slice((i+1)*9,(i+2)*9),total:filtered.length,currentPage:i+2,totalPages}}))})}
+---
+<Archive {...Astro.props}/>

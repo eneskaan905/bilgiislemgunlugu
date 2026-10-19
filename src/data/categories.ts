@@ -1,0 +1,8 @@
+export const categories = [
+  {name:'Sistem Yönetimi',slug:'sistem-yonetimi',icon:'▤'},
+  {name:'Linux',slug:'linux',icon:'>_'},
+  {name:'Ağ & Güvenlik',slug:'ag-guvenlik',icon:'⌘'},
+  {name:'DevOps',slug:'devops',icon:'▦'},
+  {name:'Otomasyon',slug:'otomasyon',icon:'⌁'},
+  {name:'Bulut',slug:'bulut',icon:'☁'},
+];
