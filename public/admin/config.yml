@@ -1,9 +1,9 @@
-# Yazılar bu GitHub deposuna kaydedilir.
 backend:
   name: github
   repo: eneskaan905/bilgiislemgunlugu
   branch: main
-  auth_methods: [token]
+  auth_methods:
+    - token
 site_url: https://bilgiislemgunlugu.com
 display_url: https://bilgiislemgunlugu.com
 locale: tr
@@ -15,24 +15,304 @@ collections:
     label_singular: Yazı
     folder: src/content/posts
     create: true
-    slug: '{{slug}}'
+    slug: "{{slug}}"
     preview_path: yazilar/{{slug}}/
-    summary: '{{title}} — {{category}}'
+    summary: "{{title}} — {{category}}"
     fields:
-      - {label: Başlık, name: title, widget: string}
-      - {label: Açıklama, name: description, widget: text}
-      - {label: Yayın tarihi, name: date, widget: datetime, type: date}
+      - label: Başlık
+        name: title
+        widget: string
+      - label: Açıklama
+        name: description
+        widget: text
+      - label: Yayın tarihi
+        name: date
+        widget: datetime
+        type: date
       - label: Kategori
         name: category
-        widget: select
-        options: [Sistem Yönetimi, Linux, 'Ağ & Güvenlik', DevOps, Otomasyon, Bulut]
-      - {label: Etiketler, name: tags, widget: list}
-      - {label: Okuma süresi (dakika), name: minutes, widget: number, value_type: int, min: 1, default: 5}
-      - {label: Öne çıkan, name: featured, widget: boolean, default: false}
-      - {label: Taslak, name: draft, widget: boolean, default: true}
+        widget: relation
+        collection: settings
+        file: categories
+        search_fields:
+          - "{{categories.*.name}}"
+        value_field: "{{categories.*.name}}"
+        display_fields:
+          - "{{categories.*.name}}"
+      - label: Etiketler
+        name: tags
+        widget: list
+      - label: Okuma süresi (dakika)
+        name: minutes
+        widget: number
+        value_type: int
+        min: 1
+        default: 5
+      - label: Öne çıkan
+        name: featured
+        widget: boolean
+        default: false
+      - label: Taslak
+        name: draft
+        widget: boolean
+        default: true
       - label: Kapak illüstrasyonu
         name: art
         widget: select
-        options: [terminal, network, docker, code, cloud, backup]
+        options:
+          - terminal
+          - network
+          - docker
+          - code
+          - cloud
+          - backup
         default: terminal
-      - {label: İçerik, name: body, widget: markdown}
+      - name: cover
+        label: Özel kapak görseli
+        widget: image
+        required: false
+        hint: Boş bırakırsanız seçilen illüstrasyon kullanılır.
+      - name: demo
+        label: Örnek içerik uyarısını göster
+        widget: boolean
+        default: false
+      - label: İçerik
+        name: body
+        widget: markdown
+  - name: settings
+    label: Site Yönetimi
+    files:
+      - name: site
+        label: Genel, Menü ve Footer
+        file: src/data/site.json
+        fields:
+          - name: title
+            label: Başlık
+            widget: string
+          - name: description
+            label: Açıklama
+            widget: text
+          - name: brandTop
+            label: Logo üst yazısı
+            widget: string
+          - name: brandBottom
+            label: Logo alt yazısı
+            widget: string
+          - name: logo
+            label: Özel logo (isteğe bağlı)
+            widget: image
+            required: false
+          - name: favicon
+            label: Sekme ikonu
+            widget: image
+          - name: author
+            label: Yazar adı
+            widget: string
+          - name: navigation
+            label: Ana menü
+            widget: list
+            fields:
+              - name: label
+                label: Metin
+                widget: string
+              - name: href
+                label: Adres
+                widget: string
+                hint: "Site içi: /hakkinda/ veya /sayfalar/iletisim/. Dış adres: https://..."
+          - name: footer
+            label: Footer
+            widget: object
+            fields:
+              - name: message
+                label: Footer açıklaması
+                widget: string
+              - name: copyright
+                label: Telif adı
+                widget: string
+              - name: note
+                label: Alt not
+                widget: string
+              - name: links
+                label: Bağlantılar
+                widget: list
+                fields:
+                  - name: label
+                    label: Metin
+                    widget: string
+                  - name: href
+                    label: Adres
+                    widget: string
+                    hint: "Site içi: /hakkinda/ veya /sayfalar/iletisim/. Dış adres: https://..."
+      - name: home
+        label: Ana Sayfa
+        file: src/data/home.json
+        fields:
+          - name: eyebrow
+            label: Üst etiket
+            widget: string
+          - name: titleStart
+            label: Başlık başlangıcı
+            widget: string
+          - name: titleAccent
+            label: Turkuaz başlık
+            widget: string
+          - name: titleSecond
+            label: Başlık ikinci satır
+            widget: string
+          - name: description
+            label: Açıklama
+            widget: text
+          - name: primaryLabel
+            label: Ana buton metni
+            widget: string
+          - name: primaryHref
+            label: Ana buton adresi
+            widget: string
+          - name: secondaryLabel
+            label: İkinci buton metni
+            widget: string
+          - name: secondaryHref
+            label: İkinci buton adresi
+            widget: string
+          - name: note
+            label: Alt not
+            widget: string
+          - name: statusLabel
+            label: Terminal üst etiketi
+            widget: string
+          - name: visualLabel
+            label: Terminal alt etiketi
+            widget: string
+          - name: topicsLabel
+            label: Kategori şeridi başlığı
+            widget: string
+          - name: showTopics
+            label: Kategori şeridini göster
+            widget: boolean
+          - name: showFeatured
+            label: Öne çıkan rehberi göster
+            widget: boolean
+          - name: featuredEyebrow
+            label: Öne çıkan üst etiketi
+            widget: string
+          - name: featuredTitle
+            label: Öne çıkan bölüm başlığı
+            widget: string
+          - name: featuredNote
+            label: Öne çıkan kenar notu
+            widget: string
+          - name: featuredBadge
+            label: Rehber rozeti
+            widget: string
+          - name: recentEyebrow
+            label: Son yazılar üst etiketi
+            widget: string
+          - name: recentTitle
+            label: Son yazılar başlığı
+            widget: string
+          - name: recentCount
+            label: Ana sayfadaki yazı sayısı (0–6)
+            widget: number
+            value_type: int
+            min: 0
+            max: 6
+          - name: allPostsLabel
+            label: Tüm yazılar bağlantı metni
+            widget: string
+          - name: archiveNote
+            label: Arşiv açıklaması
+            widget: string
+          - name: archiveLabel
+            label: Arşiv buton metni
+            widget: string
+          - name: showBanner
+            label: Alt tanıtım alanını göster
+            widget: boolean
+          - name: bannerEyebrow
+            label: Tanıtım üst etiketi
+            widget: string
+          - name: bannerTitle
+            label: Tanıtım başlığı
+            widget: string
+          - name: bannerDescription
+            label: Tanıtım açıklaması
+            widget: text
+          - name: bannerLabel
+            label: Tanıtım buton metni
+            widget: string
+          - name: bannerHref
+            label: Tanıtım buton adresi
+            widget: string
+      - name: archive
+        label: Yazı Arşivi
+        file: src/data/archive.json
+        fields:
+          - name: eyebrow
+            label: Üst etiket
+            widget: string
+          - name: title
+            label: Başlık
+            widget: string
+          - name: description
+            label: Açıklama
+            widget: text
+          - name: emptyMessage
+            label: Boş kategori mesajı
+            widget: string
+      - name: categories
+        label: Kategoriler
+        file: src/data/categories.json
+        fields:
+          - name: categories
+            label: Kategoriler
+            widget: list
+            fields:
+              - name: name
+                label: Kategori adı
+                widget: string
+                hint: Kategori adını değiştirirseniz mevcut yazıların kategorilerini de güncelleyin.
+              - name: slug
+                label: Adres anahtarı
+                widget: string
+                pattern:
+                  - ^[a-z0-9]+(?:-[a-z0-9]+)*$
+                  - Küçük İngilizce harf, rakam ve tire kullanın.
+                hint: Yayınlanan kategorilerin adresini değiştirmek eski bağlantıları etkiler.
+              - name: icon
+                label: Simge
+                widget: string
+  - name: pages
+    label: Sayfalar
+    label_singular: Sayfa
+    folder: src/content/pages
+    create: true
+    slug: "{{slug}}"
+    preview_path: sayfalar/{{slug}}/
+    fields:
+      - name: title
+        label: Başlık
+        widget: string
+      - name: eyebrow
+        label: Üst etiket
+        widget: string
+        required: false
+      - name: description
+        label: SEO açıklaması
+        widget: text
+      - name: buttonLabel
+        label: Buton metni
+        widget: string
+        required: false
+      - name: buttonHref
+        label: Buton adresi
+        widget: string
+        default: /yazilar/
+      - name: draft
+        label: Taslak
+        widget: boolean
+        default: true
+      - name: body
+        label: Sayfa içeriği
+        widget: markdown
+    description: Hakkında sayfası /hakkinda/ adresindedir. Yeni sayfalar /sayfalar/dosya-adi/ adresinde
+      açılır. Menüye eklemek için Site Yönetimi bölümünü kullanın.

@@ -5,6 +5,7 @@ date: 2026-09-27
 category: Bulut
 tags: [cloud, planlama, altyapi]
 minutes: 5
+demo: true
 art: cloud
 ---
 Buluta geçiş bir hedefe hizmet etmeli: daha kolay ölçeklenmek, bakım yükünü azaltmak veya farklı bir süreklilik modeli kurmak gibi.

@@ -15,6 +15,19 @@ npm run dev
 
 ## İçerik
 
+## Panelden tüm siteyi düzenleme
+
+- **Site Yönetimi → Genel, Menü ve Footer:** SEO başlığı/açıklaması, marka yazıları, özel logo, favicon, yazar adı, sıralanabilir ana menü, footer metinleri ve bağlantıları.
+- **Site Yönetimi → Ana Sayfa:** Başlıklar, açıklamalar, buton metin/adresleri, terminal çevresi etiketleri, kategori/öne çıkan/tanıtım alanlarının görünürlüğü ve son yazı sayısı (0–6).
+- **Site Yönetimi → Yazı Arşivi:** Arşiv başlığı, açıklaması ve boş kategori mesajı.
+- **Site Yönetimi → Kategoriler:** Kategori adı, adres anahtarı ve simge. Yayındaki kategori adını değiştirirseniz yazılardaki kategori seçimini de güncelleyin; adres anahtarı değişirse eski URL değişir.
+- **Sayfalar:** Hakkında içeriğini düzenleyin veya Markdown ile yeni sayfalar oluşturun. `hakkinda` dosyası `/hakkinda/` adresindedir; diğerleri `/sayfalar/dosya-adi/` adresinde yayınlanır. Menüye ve footer'a ilgili adresi ayrıca ekleyin. Taslak sayfalar yayınlanmaz.
+- **Yazılar:** İçerik, kategori, etiketler, özel kapak yükleme, illüstrasyon, öne çıkarma, örnek içerik uyarısı ve taslak ayarları.
+
+Kaydetme GitHub commit'i oluşturur; Cloudflare build tamamlanınca içerik yayına geçer. Statik CMS önizlemesi tam site önizlemesi değildir. Görsel düzen, animasyon kodu ve bileşen tasarımı kaynak kodundan yönetilir.
+
+Doğrulama: `node scripts/verify-cms.mjs`, geçici içeriklerle CMS verilerinin sayfalara yansımasını doğrular, dosyaları geri yükler ve üretim çıktısını yeniden derler.
+
 Yazılar `src/content/posts/*.md` dosyalarındadır. Taslaklar (`draft: true`) liste, arama ve sayfa üretiminden çıkarılır. Altı yazı örnek içeriktir; kişisel deneyimlerinizle değiştirin. Örnek içerik uyarısı `src/pages/yazilar/[...id].astro` dosyasındadır; gerçek yazılar eklendiğinde kaldırılabilir. Kategori adlarını CMS seçenekleriyle aynı tutun. `featured: true` işaretli en yeni yazı öne çıkar.
 
 ## Sveltia yönetim paneli

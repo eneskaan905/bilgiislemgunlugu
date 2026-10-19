@@ -5,6 +5,7 @@ date: 2026-10-15
 category: Linux
 tags: [linux, ubuntu, sunucu]
 minutes: 8
+demo: true
 featured: true
 art: terminal
 ---

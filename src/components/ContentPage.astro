@@ -1,0 +1,7 @@
+---
+import {render} from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import site from '../data/site.json';
+const {page}=Astro.props;const {Content}=await render(page);
+---
+<Layout title={page.data.title+' — '+site.title} description={page.data.description}><section class="container about-page"><span class="eyebrow">{page.data.eyebrow}</span><h1>{page.data.title}<span class="dot">.</span></h1><div class="prose"><Content/></div>{page.data.buttonLabel&&<a class="button primary" href={page.data.buttonHref}>{page.data.buttonLabel} ↗</a>}</section></Layout>

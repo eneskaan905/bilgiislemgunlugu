@@ -1,0 +1,33 @@
+{
+  "title": "Bilgi İşlem Günlüğü",
+  "description": "Sistem yönetimi, ağ, Linux ve otomasyon üzerine sahadan notlar ve adım adım IT rehberleri.",
+  "brandTop": "bilgi işlem",
+  "brandBottom": "günlüğü",
+  "logo": "",
+  "favicon": "/favicon-notebook-v2.svg",
+  "author": "Enes",
+  "navigation": [
+    {
+      "label": "Ana sayfa",
+      "href": "/"
+    },
+    {
+      "label": "Yazılar",
+      "href": "/yazilar/"
+    },
+    {
+      "label": "Kategoriler",
+      "href": "/#konular"
+    },
+    {
+      "label": "Hakkında",
+      "href": "/hakkinda/"
+    }
+  ],
+  "footer": {
+    "message": "Biriken tecrübe, paylaşıldıkça değerlenir.",
+    "copyright": "Bilgi İşlem Günlüğü",
+    "note": "Merakla öğrenildi. Özenle paylaşıldı.",
+    "links": []
+  }
+}

@@ -1,16 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from './Card.astro';
+import archive from '../data/archive.json';
+import site from '../data/site.json';
 import {categories} from '../data/categories';
 const {posts,total,currentPage=1,totalPages=1,category}=Astro.props;
 const base=category?`/yazilar/kategori/${category.slug}/`:'/yazilar/';
 const pageUrl=(n:number)=>n===1?base:base+`sayfa/${n}/`;
 ---
-<Layout title={`${category?category.name+' yazıları':'Tüm yazılar'}${currentPage>1?' · Sayfa '+currentPage:''} — Bilgi İşlem Günlüğü`}>
-<section class="container archive-page"><header class="archive-header"><div class="breadcrumbs"><a href="/">Ana sayfa</a> / <a href="/yazilar/">Yazılar</a>{category&&' / '+category.name}</div><span class="eyebrow">BİRİKEN TECRÜBENİN ARŞİVİ</span><h1>{category?category.name:'Not defterindeki her şey'}<span class="dot">.</span></h1><p>Bir sorundan bir çözüme. İhtiyacın olan rehberi bul, kendi yoluna devam et.</p></header>
+<Layout title={`${category?category.name+' yazıları':'Tüm yazılar'}${currentPage>1?' · Sayfa '+currentPage:''} — ${site.title}`}>
+<section class="container archive-page"><header class="archive-header"><div class="breadcrumbs"><a href="/">Ana sayfa</a> / <a href="/yazilar/">Yazılar</a>{category&&' / '+category.name}</div><span class="eyebrow">{archive.eyebrow}</span><h1>{category?category.name:archive.title}<span class="dot">.</span></h1><p>{archive.description}</p></header>
 <nav class="archive-filters" aria-label="Yazı kategorileri"><a href="/yazilar/" aria-current={!category?'page':undefined}>Tümü</a>{categories.map(c=><a href={`/yazilar/kategori/${c.slug}/`} aria-current={category?.slug===c.slug?'page':undefined}>{c.name}</a>)}</nav>
 <div class="archive-summary"><span>{total} yazı</span><span>Sayfa {currentPage} / {totalPages}</span></div>
 <div class="posts-grid">{posts.map(post=><Card post={post}/>)}</div>
-{!posts.length&&<p class="archive-empty">Bu kategoride henüz yazı yok. Yeni notlar yakında burada.</p>}
+{!posts.length&&<p class="archive-empty">{archive.emptyMessage}</p>}
 {totalPages>1&&<nav class="pagination" aria-label="Arşiv sayfaları">{currentPage>1&&<a href={pageUrl(currentPage-1)} rel="prev">← Önceki</a>}{Array.from({length:totalPages},(_,i)=>i+1).map(n=><a href={pageUrl(n)} aria-current={n===currentPage?'page':undefined} aria-label={`Sayfa ${n}`}>{n}</a>)}{currentPage<totalPages&&<a href={pageUrl(currentPage+1)} rel="next">Sonraki →</a>}</nav>}
 </section></Layout>

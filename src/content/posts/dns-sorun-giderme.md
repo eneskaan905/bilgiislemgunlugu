@@ -5,6 +5,7 @@ date: 2026-10-12
 category: 'Ağ & Güvenlik'
 tags: [dns, network, troubleshooting]
 minutes: 6
+demo: true
 art: network
 ---
 Bir bağlantı sorununun kaynağını bulmak için önce belirtisini netleştir: Tek bir site mi açılmıyor, yoksa tüm alan adları mı?

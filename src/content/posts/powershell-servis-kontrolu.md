@@ -5,6 +5,7 @@ date: 2026-10-05
 category: Otomasyon
 tags: [powershell, windows, script]
 minutes: 5
+demo: true
 art: code
 ---
 Otomasyona başlamak için büyük bir projeye gerek yok. Salt okunur bir servis raporu iyi bir ilk adımdır.

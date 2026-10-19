@@ -5,6 +5,7 @@ date: 2026-10-08
 category: DevOps
 tags: [docker, compose, container]
 minutes: 7
+demo: true
 art: docker
 ---
 Bir test ortamını yeniden kurarken hangi portları ve diskleri kullandığını hatırlamak zor olabilir. Compose bu tercihleri dosyada tutar.

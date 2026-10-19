@@ -5,6 +5,7 @@ date: 2026-10-01
 category: Sistem Yönetimi
 tags: [backup, yedekleme, recovery]
 minutes: 6
+demo: true
 art: backup
 ---
 Başarılı tamamlanan bir yedekleme işi iyi bir başlangıçtır. Asıl soru, ihtiyaç duyduğunda veriyi ne kadar sürede geri getirebildiğindir.
