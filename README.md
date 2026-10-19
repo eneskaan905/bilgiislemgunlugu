@@ -20,7 +20,7 @@ Yazılar `src/content/posts/*.md` dosyalarındadır. Taslaklar (`draft: true`) l
 ## Sveltia yönetim paneli
 
 1. Projeyi kendi GitHub deponuza ekleyin.
-2. `public/admin/config.yml` içindeki `backend.repo` alanına `kullanici/depo` yazın ve branch değerini doğrulayın.
+2. `public/admin/config.yml` deposu `eneskaan905/bilgiislemgunlugu`, yayın dalı `main` olarak ayarlanmıştır.
 3. HTTPS üzerinden `/admin/` adresini açın. Sveltia'nın desteklediği GitHub erişim belirteci veya OAuth yöntemiyle giriş yapın. Gizli anahtarları kaynak dosyalarına yazmayın. OAuth için kendi kimlik doğrulama servisinizi kurup Sveltia belgelerine göre backend ayarlarını ekleyin.
 4. CMS kaydetmeleri GitHub'a commit oluşturur. Hosting sağlayıcısında aynı depoya bağlı otomatik build tanımlayın; aksi halde site kendiliğinden güncellenmez.
 
@@ -28,7 +28,13 @@ Dosya sistemi erişimini destekleyen tarayıcılarda Sveltia'nın yerel klasör 
 
 ## Alan adıyla yayınlama
 
-Statik Astro destekleyen hosting üzerinde build komutu `npm run build`, çıktı klasörü `dist` olsun. Hosting panelinde `bilgiislemgunlugu.com` ve gerekirse `www` alanını ekleyin. DNS kayıtlarını hosting sağlayıcısının verdiği değerlerle değiştirin ve HTTPS'i etkinleştirin. `astro.config.mjs` içindeki site adresi alan adınıza hazırdır. DNS ve hosting hesaplarına bu projeden erişim yoktur; canlı yayın henüz yapılmadı.
+Cloudflare Pages projesi: `bilgiislemgunlugu`. GitHub deposunun `main` dalına bağlıdır. Build komutu `npm run build`, çıktı klasörü `dist`, Node.js sürümü `24` olarak ayarlanmıştır. CMS'nin GitHub'a kaydettiği değişiklikler Cloudflare'da otomatik build başlatır.
+
+Önizleme/yayın adresi: https://bilgiislemgunlugu.pages.dev
+
+`bilgiislemgunlugu.com` özel alan adı projeye eklenmiştir. DNS'te kök alan adı için `CNAME @ → bilgiislemgunlugu.pages.dev` kaydı gerekir; DNS doğrulaması ve sertifika tamamlandığında özel alan adı aktif olur. MX/TXT gibi e-posta kayıtlarını değiştirmeyin.
+
+Yönetim paneli: https://bilgiislemgunlugu.pages.dev/admin/ (özel alan adı aktif olduğunda https://bilgiislemgunlugu.com/admin/). GitHub erişim belirtecini yalnızca CMS giriş ekranına girin. Belirteci bu dosyaya, depoya veya sohbet mesajına eklemeyin. Ayrı bir OAuth uygulaması kurulmadı; mevcut giriş yöntemi Sveltia'nın desteklediği GitHub belirteci girişidir.
 
 ## Özellikler
 
