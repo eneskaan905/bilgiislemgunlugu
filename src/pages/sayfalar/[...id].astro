@@ -1,6 +1,7 @@
 ---
 import {getCollection} from 'astro:content';
 import ContentPage from '../../components/ContentPage.astro';
-export async function getStaticPaths(){return (await getCollection('pages',({data})=>!data.draft)).filter(p=>p.id!=='hakkinda').map(page=>({params:{id:page.id},props:{page}}))}
+export async function getStaticPaths(){return (await getCollection('pages',({data})=>!data.draft)).map(page=>({params:{id:page.id},props:{page}}))}
+if(Astro.props.page.id==='hakkinda')return Astro.redirect('/hakkinda/',301);
 ---
 <ContentPage page={Astro.props.page}/>
